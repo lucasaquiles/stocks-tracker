@@ -1,15 +1,32 @@
 <template>
+  <div class="stocks">
+    <h1>Your Stocks</h1>
 
-    <div class="stocks">
-        All stocks 
+    <div v-for="stock in stocks">
+      <p>{{ stock.code }} - {{ stock.amount }}</p>
     </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'stocks',
-        data () {
-            return {}
-        }
+
+import StockService from '../services/stocksService'
+
+export default {
+  name: 'stocks',
+  data () {
+    return {
+      stocks: []
     }
+  },
+  mounted () {
+    this.getStocks()
+  },
+  methods: {
+    async getStocks () {
+      const response = await StockService.fetchStocks()
+      this.stocks = response.data
+    }
+  }
+}
 </script>

@@ -16,11 +16,11 @@ app.get('/stocks', (req, res) => {
                 amount: 6
             },
             {
-                code: "XPCAGEY",
+                code: "XPXPEY",
                 amount: 2
             },
             {
-                code: "XPCAGEY2",
+                code: "XPCAGY2",
                 amount: 2
             }
         ]

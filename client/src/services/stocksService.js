@@ -1,7 +1,7 @@
 import Api from './Api'
 
 export default {
-    fetchStocks () {
-        return Api().get('stocks')
-    }
+  fetchStocks () {
+    return Api().get('stocks')
+  }
 }
