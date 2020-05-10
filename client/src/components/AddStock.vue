@@ -21,6 +21,15 @@
     </div>
 
     <div>
+      <div>
+        <label for="purchase-date">Purshcase date</label>
+      </div>
+      <div>
+        <input type="text" id="purchcase-date" v-model="stock.purchaseDate" />
+      </div>
+    </div>
+
+    <div>
       <button>Cancel</button>
       <button @click="addNewStock">Add new</button>
     </div>
@@ -46,7 +55,8 @@ export default {
     addNewStock() {
       const stockData = {
         name: this.stock.name,
-        amount: this.stock.amount
+        amount: this.stock.amount,
+        purchaseDate: this.purchaseDate
       };
 
       this.addStock(stockData);
