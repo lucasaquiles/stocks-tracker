@@ -2,26 +2,13 @@
 const api = require('axios-cache-adapter').setup()
 const cheerio = require("cheerio")
 
-exports.listAll = function (req, res) {
+const stockService = require('./stockService')
 
-    res.send(
-        [
-            {
-                code: "IBOV",
-                amount: 6,
-                value: 671.0
-            },
-            {
-                code: "XPXPEY",
-                amount: 2,
-                value: 671.0
-            },
-            {
-                code: "XPCAGY2",
-                amount: 2,
-                value: 671.0
-            }
-        ]
+exports.listAll = function (req, res) {
+    const allStocks = stockService.listAll();
+
+    res.json(
+        allStocks
     )
 };
 

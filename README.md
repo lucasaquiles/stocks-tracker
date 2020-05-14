@@ -16,7 +16,15 @@ server
 ```
 cd server
 npm install
+
+knex migrate:latest
+knex seed:run
+
 npm start
 ```
+
+
+<!-- knex seed:make todo -->
+
 
 http://localhost:8080/#/stocks
