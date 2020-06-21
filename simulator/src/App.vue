@@ -1,18 +1,21 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
+    
     <Simulator />
+    
   </div>
 </template>
 
 <script>
-  
+
   import Simulator from './components/Simulator.vue'
   export default {
     name: 'App',
     components: {
       Simulator
     }
+
   }
 </script>
 
