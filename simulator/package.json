@@ -5,8 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
-    "heroku-prebuild": "npm install pm2 -g && npm install",
-    "start": "NODE_ENV=production npm run serve",
+    "heroku-prebuild": "npm run build",
+    "start": "serve -s dist",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -15,6 +15,7 @@
     "cheerio": "^1.0.0-rc.3",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "vue": "^2.6.11",
     "vue-material": "^1.0.0-beta-14"
   },

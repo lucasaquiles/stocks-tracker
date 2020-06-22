@@ -1,8 +1,12 @@
+require('dotenv').config({
+    path: process.env.NODE_ENV === "production" ? ".env.prod" : ".env"
+})
+
 import axios from 'axios'
 
 export default () => {
   
   return axios.create({
-    baseURL: 'http://localhost:8081'
+    baseURL: process.env.FII_SOURCE_URL
   })
 }
