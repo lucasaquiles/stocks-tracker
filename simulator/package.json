@@ -5,6 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "heroku-prebuild": "npm install pm2 -g",
+    "start": "pm2-runtime start ecosystem.config.js --env production",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
