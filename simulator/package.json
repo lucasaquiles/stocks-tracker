@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "heroku-prebuild": "npm install pm2 -g",
+    "heroku-prebuild": "npm install pm2 -g && npm install",
     "start": "NODE_ENV=production npm run serve",
     "lint": "vue-cli-service lint"
   },
