@@ -6,13 +6,14 @@ name: simulator.js CI
 on:
   push:
     branches: [ master ]
-    
+
 jobs:
   build:
-
+    defaults:
+      run:
+        shell: bash
+        working-directory: simulator
     runs-on: ubuntu-latest
-    env:
-      work-directory: ./simulator
 
     strategy:
       matrix:
