@@ -30,7 +30,7 @@ export default {
   name: 'Calculator',
   props: ['simulationResults'],
   data () {
-    this.simulationResults
+    return this.simulationResults
   }
 }
 </script>
