@@ -12,7 +12,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      work-directory: ./simulator  
+      work-directory: ./simulator
 
     strategy:
       matrix:
