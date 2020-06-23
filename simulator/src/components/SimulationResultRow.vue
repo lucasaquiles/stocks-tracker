@@ -12,12 +12,12 @@
         </div>
 </template>
 <script>
-    export default {
-        name: 'SimulationResultRow',
-        props: ["simulationResults"],
-        data() {
-            console.log(this)
-            return this.simulationResults
-        }
-    }
+export default {
+  name: 'SimulationResultRow',
+  props: ['simulationResults'],
+  data () {
+    console.log(this)
+    return this.simulationResults
+  }
+}
 </script>

@@ -26,11 +26,11 @@
 
 <script>
 
-    export default {
-        name: 'Calculator',
-        props: ["simulationResults"],
-        data() {
-            this.simulationResults
-        }
-    }
+export default {
+  name: 'Calculator',
+  props: ['simulationResults'],
+  data () {
+    this.simulationResults
+  }
+}
 </script>

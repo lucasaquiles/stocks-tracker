@@ -10,7 +10,7 @@
                 <div class="md-layout-item">
                     <Calculator v-bind="store" />
                 </div>
-                
+
                 <div class="md-layout-item">
                     <SimulationResults v-bind="store" />
                 </div>
@@ -18,22 +18,20 @@
         </md-card-content>
     </md-card>
 
-
-
 </template>
 
 <script>
-    import Calculator from './Calculator.vue'
-    import SimulationResults from './SimulationResults.vue'
-    import store from "../model/store"
+import Calculator from './Calculator.vue'
+import SimulationResults from './SimulationResults.vue'
+import store from '../model/store'
 
-    export default {
-        name: 'Simulator',
-        components: {
-            Calculator, SimulationResults
-        },
-        data() {
-            return store
-        }
-    }
+export default {
+  name: 'Simulator',
+  components: {
+    Calculator, SimulationResults
+  },
+  data () {
+    return store
+  }
+}
 </script>
