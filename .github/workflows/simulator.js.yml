@@ -11,6 +11,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      work-directory: ./simulator  
 
     strategy:
       matrix:
@@ -20,7 +22,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
     - name: buid app
-      run: npm install ./simulator
+      run: npm install
     - name: Add remote origin
       run: git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
     - name: Deploy backend to heroku
