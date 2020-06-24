@@ -23,4 +23,3 @@ jobs:
     - name: Deploy backend to heroku
       run: git subtree push --prefix simulator heroku master
 
-
