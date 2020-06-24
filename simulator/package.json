@@ -7,10 +7,10 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start-dev": "npm run dev",
-    "start": "NODE_ENV=production npm run build",
+    "start": "npm run build",
     "heroku-prebuild": "npm install",
     "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js"
+    "build": "NODE_ENV=production node build/build.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
