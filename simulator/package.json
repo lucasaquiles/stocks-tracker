@@ -8,7 +8,7 @@
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start-dev": "npm run dev",
     "start": "npm run build",
-    "heroku-prebuild": "npm install",
+    "heroku-prebuild": "npm --production=false install",
     "lint": "eslint --ext .js,.vue src",
     "build": "NODE_ENV=production node build/build.js"
   },
