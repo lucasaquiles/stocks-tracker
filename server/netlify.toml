@@ -1,0 +1,3 @@
+[build]
+    comand = "npm install && npm run build"
+    functions = "functions"
