@@ -6,7 +6,7 @@ const stockService = require('./stockService')
 
 exports.listAll = function (req, res) {
 
-    const allStocks = stockService.listAll();
+    const allStocks = []
 
     res.json(
         allStocks

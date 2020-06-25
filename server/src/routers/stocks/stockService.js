@@ -1,6 +1,6 @@
-const db = require("../../../db")
+
 
 exports.listAll = async function () {
-    const stocks = await db('stocks');
+    const stocks = await [];
     return stocks;
 }
