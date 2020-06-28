@@ -1,6 +1,5 @@
 
 const api = require('axios-cache-adapter').setup()
-const cheerio = require("cheerio")
 
 const stockService = require('./stockService')
 
@@ -23,31 +22,23 @@ exports.find = function (req, res) {
             maxAge: 5 * 60 * 1000,
             exclude: { query: false }
         }
-    }).then((response) => {
+    }).then((response) => {        
 
-        const html = response.data;
-        const $ = cheerio.load(html);
+        const content = stockService.extract(response.data);
+        res.send(content);
+    }).catch((errors) => {  
 
-        const base = $("#informations--indexes .item").text().split("\n");
-        const yeldValue = Number.parseFloat(base[1].trim().replace("R$", "").replace(",", ".").trim());
-        const dividendos = Number.parseFloat(base[4].trim().replace("R$", "").replace(",", ".").trim());
-        const stockValue = Number.parseFloat(base[10].trim().replace("R$", "").replace(",", ".").trim());
-
-        res.send(
-            {
-                dividendYeld: yeldValue,
-                lastDividend: dividendos,
-                value: stockValue
-            }
-        );
-    }).catch((errors) => {
-        console.log("errors: " + errors)
+        res.status(errors.response.status)
+        res.send({
+            "code": errors.response.status,
+            "message": errors.response.statusText
+        }) 
     })
 }
 
 exports.addNew = function (req, res) {
 
-    const requestedURL = "https://www.fundsexplorer.com.br/funds/" + req.body.name;
+    const requestedURL = "https://fiis.com.br/"  + req.body.name;
     const contentData = { data: null }
 
     console.log("request to " + requestedURL);
@@ -59,14 +50,14 @@ exports.addNew = function (req, res) {
         }
     }).then((response) => {
 
-        const html = response.data;
-        const $ = cheerio.load(html);
-        const yeldValue = $("span.indicator-value").text().split("\n")[3].trim();
-        const parsedNumber = Number.parseFloat(yeldValue.replace("R$", "").replace(",", ".").trim())
-
-        contentData.data = parsedNumber;
+        const content = stockService.extract(response.data);
+        contentData.data = content.value;
         res.send(contentData);
     }).catch((errors) => {
-        console.log("errors: " + errors)
+        res.status(errors.response.status)
+        res.send({
+            "code": errors.response.status,
+            "message": errors.response.statusText
+        }) 
     })
 }
