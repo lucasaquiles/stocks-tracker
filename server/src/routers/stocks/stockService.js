@@ -23,7 +23,7 @@ exports.extract =  function (response) {
     const cotacaoWrapperInfo = $("#quotations--infos-wrapper");
     const valorCotacao = cotacaoWrapperInfo.find($('.quotation')).text().split("\n");
     
-    const dividendLast12Months = findRendimentosUltimos12Meses($)
+    const sumary = findRendimentosUltimos12Meses($)
 
     const yeldValue = parseFloat(base[1].trim().replace("R$", "").replace(",", ".").trim());
     const dividendos = parseFloat(base[4].trim().replace("R$", "").replace(",", ".").trim());
@@ -33,7 +33,7 @@ exports.extract =  function (response) {
         dividendYeld: yeldValue,
         lastDividend: dividendos,
         value: stockValue,
-        dividendLast12Months: dividendLast12Months
+        sumary: sumary
     };
 }
 
@@ -54,5 +54,27 @@ function findRendimentosUltimos12Meses($) {
         dividendLast12Months.push(item);
     });
 
-    return dividendLast12Months
+    const sumary = {
+        median: calcMedian(dividendLast12Months),
+        dividendLast12Months: dividendLast12Months
+    }
+
+    return sumary
+}
+
+function calcMedian(itens) {
+
+    itens.sort((a,b) => {
+        return a.rendimento > b.rendimento
+    });
+
+    const indiceCentral = itens.length / 2;
+    if(itens.length % 2 == 0) {
+        
+        console.log("element", itens[indiceCentral])
+        const sumCentralElements = itens[indiceCentral].rendimento + itens[indiceCentral + 1].rendimento;
+        return ((sumCentralElements) / 2).toFixed(2)
+    }
+        
+    return itens[indiceCentral].rendimento.toFixed(2)
 }
