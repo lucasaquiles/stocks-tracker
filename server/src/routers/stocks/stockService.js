@@ -23,8 +23,10 @@ exports.extract =  function (response) {
     const cotacaoWrapperInfo = $("#quotations--infos-wrapper");
     const valorCotacao = cotacaoWrapperInfo.find($('.quotation')).text().split("\n");
     
+    const wrapperInfo = $("#informations--basic .wrapper .item")[1]
+    const tipoFII = $(wrapperInfo).find('.value').text()
+    
     const sumary = findRendimentosUltimos12Meses($)
-
     const yeldValue = parseFloat(base[1].trim().replace("R$", "").replace(",", ".").trim());
     const dividendos = parseFloat(base[4].trim().replace("R$", "").replace(",", ".").trim());
     const stockValue = parseFloat(valorCotacao[2].trim().replace(",","."));
@@ -33,6 +35,7 @@ exports.extract =  function (response) {
         dividendYeld: yeldValue,
         lastDividend: dividendos,
         value: stockValue,
+        fiiType: tipoFII,
         sumary: sumary
     };
 }
@@ -70,8 +73,6 @@ function calcMedian(itens) {
 
     const indiceCentral = itens.length / 2;
     if(itens.length % 2 == 0) {
-        
-        console.log("element", itens[indiceCentral])
         const sumCentralElements = itens[indiceCentral].rendimento + itens[indiceCentral + 1].rendimento;
         return ((sumCentralElements) / 2).toFixed(2)
     }
