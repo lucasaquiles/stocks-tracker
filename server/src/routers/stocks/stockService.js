@@ -25,7 +25,7 @@ exports.extract =  function (response) {
     
     const wrapperInfo = $("#informations--basic .wrapper .item")[1]
     const tipoFII = $(wrapperInfo).find('.value').text()
-    
+
     const sumary = findRendimentosUltimos12Meses($)
     const yeldValue = parseFloat(base[1].trim().replace("R$", "").replace(",", ".").trim());
     const dividendos = parseFloat(base[4].trim().replace("R$", "").replace(",", ".").trim());
@@ -57,12 +57,29 @@ function findRendimentosUltimos12Meses($) {
         dividendLast12Months.push(item);
     });
 
+
+
     const sumary = {
         median: calcMedian(dividendLast12Months),
+        average: calcAvergate(dividendLast12Months),
         dividendLast12Months: dividendLast12Months
     }
 
     return sumary
+}
+
+function calcAvergate(itens) {
+
+    if(itens.length == 0){
+        return 0.0
+    }
+
+    const sum =  itens.reduce((total, item) => {
+        return total + ((item.rendimento))
+    }, 0)
+
+    return ((sum) / itens.length).toFixed(2)
+    
 }
 
 function calcMedian(itens) {

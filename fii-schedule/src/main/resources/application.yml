@@ -1,0 +1,6 @@
+micronaut:
+  application:
+    name: fiiSchedule
+
+crawler:
+    url: https://fii-crawler-api.herokuapp.com/
