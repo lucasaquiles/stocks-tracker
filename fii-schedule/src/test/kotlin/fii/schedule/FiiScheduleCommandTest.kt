@@ -3,10 +3,10 @@ package fii.schedule
 import io.micronaut.configuration.picocli.PicocliRunner
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.env.Environment
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.Assertions
 
 class FiiScheduleCommandTest {
 
@@ -17,11 +17,16 @@ class FiiScheduleCommandTest {
         var out = System.out
         System.setOut(PrintStream(baos))
 
-        val args = arrayOf("search", "-q", "sdil11" , "--verbose")
+        val args = arrayOf("search", "-q", "sdil11")
         PicocliRunner.run(FiiScheduleCommand::class.java, ctx, *args)
         out.println(baos.toString())
 
-        Assertions.assertTrue(baos.toString().contains("FIIResult(dividendYeld=0.49, lastDividend=0.5, value=101.2, fiiType=Tijolo: Galpões, sumary=Summary(median=0.52))\n"))
+        val expected = "Current Value: R\$101.2\n" +
+                "Dividend Yeld: R\$0.49\n" +
+                "Last dividend Yeld: R\$0.5"
+
+        print(baos.toString())
+        Assertions.assertTrue(baos.toString().contains(expected))
 
         ctx.close()
     }
