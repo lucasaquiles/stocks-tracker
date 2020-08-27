@@ -17,9 +17,13 @@ repositories {
 configurations {
     // for dependencies that are needed for development only
     developmentOnly
+    generateConfig
 }
 
 dependencies {
+
+    generateConfig 'info.picocli:picocli-codegen:4.2.0'
+
     kapt(platform("io.micronaut:micronaut-bom:$micronautVersion"))
     kapt("io.micronaut:micronaut-inject-java")
     kapt("io.micronaut:micronaut-validation")
@@ -89,6 +93,14 @@ kapt {
 shadowJar {
     mergeServiceFiles()
 }
+
+task(generateGraalReflectionConfig, dependsOn: 'classes', type: JavaExec) {
+    main = 'picocli.codegen.aot.graalvm.ReflectionConfigGenerator'
+    classpath = configurations.generateConfig + sourceSets.main.runtimeClasspath
+    def outputFile = "${buildDir}/resources/main/META-INF/native-image/${project.group}/${project.name}/reflect-config.json"
+    args = ["--output=$outputFile", 'fii.schedule.FiiScheduleCommand', 'fii.schedule.commands.SearchFIICommand']
+}
+assemble.dependsOn generateGraalReflectionConfig
 
 tasks.withType(JavaExec) {
     classpath += configurations.developmentOnly

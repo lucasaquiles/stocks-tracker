@@ -2,7 +2,6 @@ package fii.schedule.commands
 
 import fii.schedule.http.CrawlerFIIClient
 import fii.schedule.http.FIIResult
-import picocli.CommandLine
 import picocli.CommandLine.Command
 import picocli.CommandLine.Help.Ansi
 import picocli.CommandLine.Option
@@ -13,15 +12,20 @@ import javax.inject.Inject
         description = ["busca FIIs no crawler"],
         mixinStandardHelpOptions = true
 )
-class SearchFIICommand(
-        @Inject private var crawlerFIIClient: CrawlerFIIClient
-) : Runnable {
+class SearchFIICommand : Runnable {
+
+    @Inject
+    lateinit var crawlerFIIClient: CrawlerFIIClient
 
     @Option(names = ["-q","--query"], description = ["Query for FII"])
     private var query : String = ""
 
     @Option(names = ["--verbose"], description = ["verbose output"])
     private var verbose : Boolean = false
+
+    init {
+
+    }
 
     override fun run() {
 

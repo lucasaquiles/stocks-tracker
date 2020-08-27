@@ -21,11 +21,12 @@ class FiiScheduleCommandTest {
         PicocliRunner.run(FiiScheduleCommand::class.java, ctx, *args)
         out.println(baos.toString())
 
-        val expected = "Current Value: R\$101.2\n" +
+        val expected = "Current Value: R\$101.49\n" +
                 "Dividend Yeld: R\$0.49\n" +
                 "Last dividend Yeld: R\$0.5"
 
         print(baos.toString())
+
         Assertions.assertTrue(baos.toString().contains(expected))
 
         ctx.close()
