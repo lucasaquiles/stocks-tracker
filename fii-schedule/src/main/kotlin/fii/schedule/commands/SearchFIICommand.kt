@@ -14,6 +14,8 @@ import javax.inject.Inject
 )
 class SearchFIICommand : Runnable {
 
+    constructor()
+
     @Inject
     lateinit var crawlerFIIClient: CrawlerFIIClient
 
@@ -22,10 +24,6 @@ class SearchFIICommand : Runnable {
 
     @Option(names = ["--verbose"], description = ["verbose output"])
     private var verbose : Boolean = false
-
-    init {
-
-    }
 
     override fun run() {
 
